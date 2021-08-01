@@ -2,7 +2,8 @@ package com.skilldistillery.timetracker.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.time.LocalDateTime;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,11 +16,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
-class TaskTest {
+class TimerTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Task task;
+	private Timer timer;
 	
 	
 	@BeforeAll
@@ -35,35 +36,28 @@ class TaskTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		task = em.find(Task.class, 1);
+		timer = em.find(Timer.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		task = null;
+		timer = null;
 	}
 
 	@Test
-	void test_direct_Task_mapping() {
-		assertNotNull(task);
-		assertEquals("Build Backend", task.getTitle());
-		assertEquals("Build a REST api backend for an event tracker.", task.getDescription());
-		assertEquals(240, task.getTotalTimeMin());
+	void test_direct_Timer_mapping() {
+		assertNotNull(timer);
+		assertEquals(LocalDateTime.of(2021, 8, 1, 8, 0, 0), timer.getStart());
+		assertEquals(LocalDateTime.of(2021, 8, 1, 12, 0, 0), timer.getEnd());
+		assertEquals(240, timer.getDuration());
 	}
 	
 	@Test
-	void test_one_Task_to_many_Timers_mapping() {
-		assertNotNull(task.getTimers());
-		assertTrue(task.getTimers().size() > 0);
-		assertEquals(1, task.getTimers().get(0).getId());
-	}
-	
-	@Test
-	void test_Task_to_Job_mapping() {
-		assertNotNull(task.getJob());
-		assertEquals(Job.class, task.getJob().getClass());
-		assertEquals(1, task.getJob().getId());
+	void test_Timer_to_Task_mapping() {
+		assertNotNull(timer.getTask());
+		assertEquals(Task.class, timer.getTask().getClass());
+		assertEquals(1, timer.getTask().getId());
 	}
 
 }

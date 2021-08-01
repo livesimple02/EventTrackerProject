@@ -15,11 +15,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
-class TaskTest {
+class JobTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Task task;
+	private Job job;
 	
 	
 	@BeforeAll
@@ -35,35 +35,27 @@ class TaskTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		task = em.find(Task.class, 1);
+		job = em.find(Job.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		task = null;
+		job = null;
 	}
 
 	@Test
-	void test_direct_Task_mapping() {
-		assertNotNull(task);
-		assertEquals("Build Backend", task.getTitle());
-		assertEquals("Build a REST api backend for an event tracker.", task.getDescription());
-		assertEquals(240, task.getTotalTimeMin());
+	void test_direct_Job_mapping() {
+		assertNotNull(job);
+		assertEquals("SD001001", job.getJobNumber());
+		assertEquals("Skill Distillery", job.getCustomer());
 	}
 	
 	@Test
-	void test_one_Task_to_many_Timers_mapping() {
-		assertNotNull(task.getTimers());
-		assertTrue(task.getTimers().size() > 0);
-		assertEquals(1, task.getTimers().get(0).getId());
-	}
-	
-	@Test
-	void test_Task_to_Job_mapping() {
-		assertNotNull(task.getJob());
-		assertEquals(Job.class, task.getJob().getClass());
-		assertEquals(1, task.getJob().getId());
+	void test_one_Job_to_Many_Tasks_mapping() {
+		assertNotNull(job.getTasks());
+		assertTrue(job.getTasks().size() > 0);
+		assertEquals(1, job.getTasks().get(0).getId());
 	}
 
 }

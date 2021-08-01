@@ -5,6 +5,8 @@
 		
 		<!-- List Entities Here -->
 		<class>com.skilldistillery.timetracker.entities.Task</class>
+		<class>com.skilldistillery.timetracker.entities.Job</class>
+		<class>com.skilldistillery.timetracker.entities.Timer</class>
 		<!-- End Entities Here -->
 		
 		<properties>
