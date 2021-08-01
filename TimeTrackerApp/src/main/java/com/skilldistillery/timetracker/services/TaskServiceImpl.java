@@ -14,12 +14,12 @@ public class TaskServiceImpl implements TaskService {
 
 	@Autowired
 	private TaskRepository taskRepo;
-	
+
 	@Override
 	public List<Task> allTasks() {
 		return taskRepo.findAll();
 	}
-	
+
 	@Override
 	public Task retrieveTaskById(int id) {
 		Task task = null;
@@ -34,8 +34,7 @@ public class TaskServiceImpl implements TaskService {
 	public Task createTask(Task task) {
 		try {
 			return taskRepo.save(task);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -43,15 +42,16 @@ public class TaskServiceImpl implements TaskService {
 
 	@Override
 	public Task updateTaskById(Task task, int id) {
-		Task taskToUpdate = retrieveTaskById(id);
-		taskToUpdate.setTitle(task.getTitle());
-		taskToUpdate.setDescription(task.getDescription());
-		taskToUpdate.setTotalTimeMin(task.getTotalTimeMin());
-		taskToUpdate.setJob(task.getJob());
 		try {
+			Task taskToUpdate = retrieveTaskById(id);
+			taskToUpdate.setTitle(task.getTitle());
+			taskToUpdate.setDescription(task.getDescription());
+			taskToUpdate.setTotalTimeMin(task.getTotalTimeMin());
+			if (task.getJob() != null) {
+				taskToUpdate.setJob(task.getJob());
+			}
 			return taskRepo.save(taskToUpdate);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -61,8 +61,7 @@ public class TaskServiceImpl implements TaskService {
 	public Boolean deleteTaskById(int id) {
 		try {
 			taskRepo.deleteById(id);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -72,5 +71,4 @@ public class TaskServiceImpl implements TaskService {
 		return true;
 	}
 
-	
 }
