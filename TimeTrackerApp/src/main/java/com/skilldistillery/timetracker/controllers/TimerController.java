@@ -12,41 +12,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.timetracker.entities.Job;
-import com.skilldistillery.timetracker.entities.Task;
-import com.skilldistillery.timetracker.services.TaskService;
+import com.skilldistillery.timetracker.entities.Timer;
+import com.skilldistillery.timetracker.services.TimerService;
 
 @RestController
 @RequestMapping ("api")
-public class TaskController {
+public class TimerController {
 
 	@Autowired
-	private TaskService taskSvc;
+	private TimerService timerSvc;
 	
-	@GetMapping ("tasks")
-	public List<Task> listTasks() {
-		return taskSvc.allTasks();
+	@GetMapping ("timers")
+	public List<Timer> listTimers() {
+		return timerSvc.allTimers();
 	}
 	
-	@GetMapping ("tasks/{id}")
-	public Task retrieveTaskById(@PathVariable Integer id) {
+	@GetMapping ("timers/{id}")
+	public Timer retrieveTimerById(@PathVariable Integer id) {
 		return null;
 	}
 	
-	@PostMapping ("tasks")
-	public Task createTask(@RequestBody Task task) {
+	@PostMapping ("timers")
+	public Timer createTimer(@RequestBody Timer timer) {
 		return null;
 	}
 	
-	@PutMapping ("tasks/{id}")
-	public Job updateTaskById(@RequestBody Task task, @PathVariable Integer id) {
+	@PutMapping ("timers/{id}")
+	public Timer updateTimerById(@RequestBody Timer timer, @PathVariable Integer id) {
 		return null;
 	}
 	
-	@DeleteMapping ("tasks/{id}")
-	public void deleteTaskById(@PathVariable Integer id) {
+	@DeleteMapping ("timers/{id}")
+	public void deleteTimerById(@PathVariable Integer id) {
 		
 	}
-	
-	
 }

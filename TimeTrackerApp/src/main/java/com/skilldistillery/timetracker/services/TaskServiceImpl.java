@@ -18,6 +18,8 @@ public class TaskServiceImpl implements TaskService {
 	public List<Task> allTasks() {
 		return taskRepo.findAll();
 	}
+	
+	
 
 	
 }

@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Job {
 
@@ -23,6 +25,7 @@ public class Job {
 	private String customer;
 	
 	@OneToMany (mappedBy = "job")
+	@JsonBackReference (value = "jobToTask")
 	private List<Task> tasks;
 
 

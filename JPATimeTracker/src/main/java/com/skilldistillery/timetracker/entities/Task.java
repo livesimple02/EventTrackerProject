@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Task {
 
@@ -28,10 +31,12 @@ public class Task {
 	private int totalTimeMin;
 	
 	@OneToMany (mappedBy = "task")
+	@JsonBackReference (value = "taskToTimer")
 	private List<Timer> timers;
 	
 	@ManyToOne
 	@JoinColumn (name = "job_id")
+	@JsonManagedReference (value ="jobToTask")
 	private Job job;
 
 
