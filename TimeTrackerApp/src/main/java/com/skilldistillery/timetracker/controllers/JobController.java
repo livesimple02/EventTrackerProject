@@ -55,12 +55,35 @@ public class JobController {
 	}
 
 	@PutMapping("jobs/{id}")
-	public Job updateJobById(@RequestBody Job job, @PathVariable Integer id) {
-		return null; // return job;
+	public Job updateJobById(@RequestBody Job job, @PathVariable Integer id, HttpServletResponse resp, HttpServletRequest req) {
+		Job jobRequested = jobSvc.retrieveJobById(id);
+		if (jobRequested == null) {
+			resp.setStatus(404);
+			return jobRequested;
+		}
+		Job jobUpdated = jobSvc.updateJobById(job, id);
+		if (jobUpdated == null) {
+			resp.setStatus(400);
+		}
+		
+		return jobUpdated;
 	}
 
 	@DeleteMapping("jobs/{id}")
-	public void deleteJobById(@PathVariable Integer id) {
-
+	public void deleteJobById(@PathVariable Integer id, HttpServletResponse resp) {
+		Job jobRequested = jobSvc.retrieveJobById(id);
+		if (jobRequested == null) {
+			resp.setStatus(404);
+			return;
+		}
+		Boolean result = jobSvc.deleteJobById(id);
+		if (result == false) {
+			resp.setStatus(409);
+			return;
+		}
+		else {
+			resp.setStatus(204);
+			return;
+		}
 	}
 }

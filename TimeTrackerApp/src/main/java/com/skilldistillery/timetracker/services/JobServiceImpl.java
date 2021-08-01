@@ -24,7 +24,7 @@ public class JobServiceImpl implements JobService {
 	public Job retrieveJobById(int id) {
 		Job job = null;
 		Optional<Job> result = jobRepo.findById(id);
-		if (result != null) {
+		if (result.isPresent()) {
 			job = result.get();
 		}
 		return job;
@@ -43,14 +43,31 @@ public class JobServiceImpl implements JobService {
 
 	@Override
 	public Job updateJobById(Job job, int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Job jobToUpdate = retrieveJobById(id);
+		jobToUpdate.setJobNumber(job.getJobNumber());
+		jobToUpdate.setCustomer(job.getCustomer());
+		try {
+			return jobRepo.save(jobToUpdate);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public Boolean deleteJobById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			jobRepo.deleteById(id);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		if (retrieveJobById(id) != null) {
+			return false;
+		}
+		return true;
 	}
 
 }

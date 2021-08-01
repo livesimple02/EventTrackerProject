@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS `job` ;
 
 CREATE TABLE IF NOT EXISTS `job` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `job_number` VARCHAR(45) NOT NULL,
+  `job_number` VARCHAR(45) NULL,
   `customer` VARCHAR(100) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `job_number_UNIQUE` (`job_number` ASC))
