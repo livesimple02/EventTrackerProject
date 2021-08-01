@@ -9,8 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
 public class Timer {
 
@@ -26,7 +24,6 @@ public class Timer {
 	
 	@ManyToOne
 	@JoinColumn (name = "task_id")
-	@JsonManagedReference (value="taskToTimer")
 	private Task task;
 
 	public Timer() {

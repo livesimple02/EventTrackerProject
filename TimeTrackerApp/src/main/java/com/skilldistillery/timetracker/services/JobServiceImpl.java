@@ -32,8 +32,13 @@ public class JobServiceImpl implements JobService {
 
 	@Override
 	public Job createJob(Job job) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return jobRepo.save(job);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override

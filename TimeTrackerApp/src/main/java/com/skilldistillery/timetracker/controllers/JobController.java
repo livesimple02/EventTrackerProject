@@ -2,6 +2,7 @@ package com.skilldistillery.timetracker.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,36 +19,48 @@ import com.skilldistillery.timetracker.entities.Job;
 import com.skilldistillery.timetracker.services.JobService;
 
 @RestController
-@RequestMapping ("api")
+@RequestMapping("api")
 public class JobController {
 
 	@Autowired
 	private JobService jobSvc;
-	
-	@GetMapping ("jobs")
+
+	@GetMapping("jobs")
 	public List<Job> listJobs() {
 		return jobSvc.allJobs();
 	}
-	
-	@GetMapping ("jobs/{id}")
+
+	@GetMapping("jobs/{id}")
 	public Job retrieveJobById(@PathVariable Integer id, HttpServletResponse resp) {
 		Job job = jobSvc.retrieveJobById(id);
-		if (job == null) { resp.setStatus(404);}
+		if (job == null) {
+			resp.setStatus(404);
+		}
 		return job;
 	}
-	
-	@PostMapping ("jobs")
-	public Job createJob(@RequestBody Job job) {
-		return null;  // return job;
+
+	@PostMapping("jobs")
+	public Job createJob(@RequestBody Job job, HttpServletResponse resp, HttpServletRequest req) {
+		Job createdJob = jobSvc.createJob(job);
+		if (createdJob == null) {
+			resp.setStatus(400);
+		}
+		else {
+			resp.setStatus(201);
+			StringBuffer url = req.getRequestURL();
+			url.append("/").append(createdJob.getId());
+			resp.setHeader("Location", url.toString());
+		}
+		return createdJob;
 	}
-	
-	@PutMapping ("jobs/{id}")
+
+	@PutMapping("jobs/{id}")
 	public Job updateJobById(@RequestBody Job job, @PathVariable Integer id) {
-		return null;  // return job;
+		return null; // return job;
 	}
-	
-	@DeleteMapping ("jobs/{id}")
+
+	@DeleteMapping("jobs/{id}")
 	public void deleteJobById(@PathVariable Integer id) {
-		
+
 	}
 }
