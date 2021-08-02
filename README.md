@@ -26,6 +26,7 @@ Currently, this application consists only of back-end code. The code has been bu
 | Delete   | DELETE    | `/api/tasks/{taskId#}`   |                                                                       | Status: 204 - No Content, 404 - Not Found |
 | Read     | GET       | `/api/timers`          |                                                                       | Collection of representations of all Timers. Status: 200 - Ok  |
 | Read     | GET       | `/api/timers/{timerId#}` |                                                                       | Representation of Timer w/ timerId#. Status: 200 - Ok, 404 - Not Found  |
+| Read     | GET       | `/api/timers/search/task/{taskId#}`   |                                                                       | Collection of representations of all timers that belong to the task with taskId#. Status: 200 |
 | Create   | POST      | `/api/timers`          | Representation of a new Timer                                         | Representation of newly created Timer. Status: 201 - Created, 400 - Bad Request |  
 | Update   | PUT       | `/api/timers/{timerId#}` | Representation of a new version of Timer w/ timerId#                  | Representation of updated Timer w/ timerId#. Status: 200 - Ok, 404 - Not Found, 400 - Bad Request|
 | Delete   | DELETE    | `/api/timers/{timerId#}` |                                                                       | Status: 204 - No Content, 404 - Not Found |

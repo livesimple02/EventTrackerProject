@@ -38,6 +38,11 @@ public class TimerController {
 		}
 		return timer;
 	}
+	
+	@GetMapping("timers/search/task/{id}")
+	public List<Timer> listTimersByTaskId (@PathVariable Integer id) {
+		return timerSvc.listTimersByTaskId(id);
+	}
 
 	@PostMapping("timers")
 	public Timer createTimer(@RequestBody Timer timer, HttpServletResponse resp, HttpServletRequest req) {

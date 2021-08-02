@@ -11,4 +11,5 @@ public interface TimerService {
 	Timer createTimer(Timer timer);
 	Timer updateTimerById(Timer timer, int id);
 	Boolean deleteTimerById(int id);
+	List<Timer> listTimersByTaskId(int id);
 }
