@@ -38,6 +38,16 @@ public class JobController {
 		}
 		return job;
 	}
+	
+	@GetMapping ("jobs/search/jobnumber/{keyword}")
+	public List<Job> listJobsByJobNumberSearch(@PathVariable String keyword) {
+		return jobSvc.searchJobsByJobNumber(keyword);
+	}
+	
+	@GetMapping ("jobs/search/customer/{keyword}")
+	public List<Job> listJobsByCustomerSearch(@PathVariable String keyword) {
+		return jobSvc.searchJobsByCustomerKeyword(keyword);
+	}
 
 	@PostMapping("jobs")
 	public Job createJob(@RequestBody Job job, HttpServletResponse resp, HttpServletRequest req) {

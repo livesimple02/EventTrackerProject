@@ -70,4 +70,16 @@ public class JobServiceImpl implements JobService {
 		return true;
 	}
 
+	@Override
+	public List<Job> searchJobsByCustomerKeyword(String keyword) {
+		String searchString = "%" + keyword + "%";
+		return jobRepo.findByCustomerLike(searchString);
+	}
+
+	@Override
+	public List<Job> searchJobsByJobNumber(String keyword) {
+		String searchString = "%" + keyword + "%";
+		return jobRepo.findByJobNumberLike(searchString);
+	}
+
 }

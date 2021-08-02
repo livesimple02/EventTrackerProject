@@ -11,4 +11,6 @@ public interface JobService {
 	Job createJob(Job job);
 	Job updateJobById(Job job, int id);
 	Boolean deleteJobById(int id);
+	List<Job> searchJobsByCustomerKeyword(String keyword);
+	List<Job> searchJobsByJobNumber(String keyword);
 }
