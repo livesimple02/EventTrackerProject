@@ -87,6 +87,9 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 START TRANSACTION;
 USE `timedb`;
 INSERT INTO `job` (`id`, `job_number`, `customer`) VALUES (1, 'SD001001', 'Skill Distillery');
+INSERT INTO `job` (`id`, `job_number`, `customer`) VALUES (2, 'AM001001', 'Amazon');
+INSERT INTO `job` (`id`, `job_number`, `customer`) VALUES (3, 'YA001001', 'Yahoo');
+INSERT INTO `job` (`id`, `job_number`, `customer`) VALUES (4, 'SD001002', 'Skill Distillery');
 
 COMMIT;
 
@@ -96,7 +99,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `timedb`;
-INSERT INTO `task` (`id`, `title`, `description`, `total_time`, `job_id`) VALUES (1, 'Build Backend', 'Build a REST api backend for an event tracker.', 240, 1);
+INSERT INTO `task` (`id`, `title`, `description`, `total_time`, `job_id`) VALUES (1, 'Build Backend', 'Build a REST api backend for an event tracker.', 360, 1);
+INSERT INTO `task` (`id`, `title`, `description`, `total_time`, `job_id`) VALUES (2, 'Build Frontend', 'Build a Frontend for event tracker using HTML/CSS/Javascript', 300, 1);
+INSERT INTO `task` (`id`, `title`, `description`, `total_time`, `job_id`) VALUES (3, 'Improve Recommendations', 'Make improvements to Amazon recommendations based on items in cart', 185, 2);
+INSERT INTO `task` (`id`, `title`, `description`, `total_time`, `job_id`) VALUES (4, 'Make email view size larger', 'Customers have complained about email preview window being too small. Make larger', 68, 3);
 
 COMMIT;
 
@@ -107,6 +113,10 @@ COMMIT;
 START TRANSACTION;
 USE `timedb`;
 INSERT INTO `timer` (`id`, `start`, `end`, `duration`, `task_id`) VALUES (1, '2021-8-1 8:00:00', '2021-8-1 12:00:00', 240, 1);
+INSERT INTO `timer` (`id`, `start`, `end`, `duration`, `task_id`) VALUES (2, '2021-8-7 15:00:00', '2021-8-7 20:00:00', 300, 2);
+INSERT INTO `timer` (`id`, `start`, `end`, `duration`, `task_id`) VALUES (3, '2021-7-30 13:00:00', '2021-7-30 16:05:00', 185, 3);
+INSERT INTO `timer` (`id`, `start`, `end`, `duration`, `task_id`) VALUES (4, '2021-7-26 10:10:00', '2021-7-26 11:18:00', 68, 4);
+INSERT INTO `timer` (`id`, `start`, `end`, `duration`, `task_id`) VALUES (5, '2021-8-1 20:00:00', '2021-8-1 22:00:00', 120, 1);
 
 COMMIT;
 
