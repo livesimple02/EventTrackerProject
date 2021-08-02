@@ -38,7 +38,12 @@ public class TaskController {
 		}
 		return task;
 	}
-
+	
+	@GetMapping("tasks/search/job/{id}")
+	public List<Task> listTasksByJob (@PathVariable Integer id) {
+		return taskSvc.listTasksByJobId(id);
+	}
+	
 	@PostMapping("tasks")
 	public Task createTask(@RequestBody Task task, HttpServletResponse resp, HttpServletRequest req) {
 		Task createdTask = taskSvc.createTask(task);

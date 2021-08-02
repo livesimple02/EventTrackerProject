@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.timetracker.entities.Job;
 import com.skilldistillery.timetracker.entities.Task;
+import com.skilldistillery.timetracker.repositories.JobRepository;
 import com.skilldistillery.timetracker.repositories.TaskRepository;
 
 @Service
@@ -14,6 +16,8 @@ public class TaskServiceImpl implements TaskService {
 
 	@Autowired
 	private TaskRepository taskRepo;
+	@Autowired
+	private JobRepository jobRepo;
 
 	@Override
 	public List<Task> allTasks() {
@@ -69,6 +73,18 @@ public class TaskServiceImpl implements TaskService {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public List<Task> listTasksByJobId(int id) {
+		Optional<Job> jobResult = jobRepo.findById(id);
+		if (jobResult.isPresent()) {
+			Job jobToSearch = jobResult.get();
+			return taskRepo.findByJob(jobToSearch);
+		}
+		else {
+			return null;
+		}
 	}
 
 }

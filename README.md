@@ -20,6 +20,7 @@ Currently, this application consists only of back-end code. The code has been bu
 | Delete   | DELETE    | `/api/jobs/{jobId#}`     |                                                                       | Status: 204 - No Content, 404 - Not Found |
 | Read     | GET       | `/api/tasks`           |                                                                       | Collection of representations of all Tasks. Status: 200 - Ok  |
 | Read     | GET       | `/api/tasks/{taskId#}`   |                                                                       | Representation of Task w/ taskId#. Status: 200 - Ok, 404 - Not Found  |
+| Read     | GET       | `/api/tasks/search/job/{jobId#}`   |                                                                       | Collection of representations of all tasks that belong to the job with jobId#. Status: 200 |
 | Create   | POST      | `/api/tasks`           | Representation of a new Task                                          | Representation of newly created Task. Status: 201 - Created, 400 - Bad Request |
 | Update   | PUT       | `/api/tasks/{taskId#}`   | Representation of a new version of Task w/ taskId#                    | Representation of updated Task w/ taskId#. Status: 200 - Ok, 404 - Not Found, 400 - Bad Request|
 | Delete   | DELETE    | `/api/tasks/{taskId#}`   |                                                                       | Status: 204 - No Content, 404 - Not Found |

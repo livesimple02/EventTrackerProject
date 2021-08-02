@@ -11,4 +11,5 @@ public interface TaskService {
 	Task createTask(Task task);
 	Task updateTaskById(Task task, int id);
 	Boolean deleteTaskById(int id);
+	List<Task> listTasksByJobId(int id);
 }
