@@ -51,6 +51,7 @@ public class JobController {
 
 	@PostMapping("jobs")
 	public Job createJob(@RequestBody Job job, HttpServletResponse resp, HttpServletRequest req) {
+		System.out.println(job);
 		Job createdJob = jobSvc.createJob(job);
 		if (createdJob == null) {
 			resp.setStatus(400);

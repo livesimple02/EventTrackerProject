@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Time Tracker</title>
+<script type="text/javascript" src="js/script.js"></script>
+</head>
+<body>
+	<h3>Create Job</h3>
+	<form name="createJobForm">
+		Job Number: <input type="text" name="jobNumber" value="HM001001" />
+		Customer: <input type="text" name="customer" value="Henry Metrology" />
+		<button name="submitCreateJob">Create Job</button>
+	</form>
+
+	<h3>Create Task</h3>
+	<form name="createTaskForm">
+		Title: <input type="text" name="title" value="Build website" />
+		Description:
+		<textarea name="description">new description</textarea>
+		Job: <input type="number" name="jobId" value="1" />
+		<button name="submitCreateTask">Create Task</button>
+	</form>
+	<form name="createTimerForm">
+		Task: <input type="number" name="taskId" value="5" />
+		<button id="startTimer" name="startTimer">Start Timer</button>
+		<button id="stopTimer" name="stopTimer" disabled>Stop Timer</button>
+		<button id="submitTime" name="submitTime" disabled>Submit Time</button>
+	</form>
+
+</body>
+</html>

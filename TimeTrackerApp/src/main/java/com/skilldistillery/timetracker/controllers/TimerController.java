@@ -60,6 +60,7 @@ public class TimerController {
 
 	@PutMapping("timers/{id}")
 	public Timer updateTimerById(@RequestBody Timer timer, @PathVariable Integer id, HttpServletResponse resp) {
+		System.out.println(timer);
 		Timer timerRequested = timerSvc.retrieveTimerById(id);
 		if (timerRequested == null) {
 			resp.setStatus(404);
