@@ -7,13 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.timetracker.entities.Job;
+import com.skilldistillery.timetracker.entities.Task;
 import com.skilldistillery.timetracker.repositories.JobRepository;
+import com.skilldistillery.timetracker.repositories.TaskRepository;
 
 @Service
 public class JobServiceImpl implements JobService {
 
 	@Autowired
 	private JobRepository jobRepo;
+	@Autowired
+	private TaskRepository taskRepo;
 
 	@Override
 	public List<Job> allJobs() {
@@ -58,6 +62,10 @@ public class JobServiceImpl implements JobService {
 	@Override
 	public Boolean deleteJobById(int id) {
 		try {
+			Job jobToDelete = retrieveJobById(id);
+			for (Task task : jobToDelete.getTasks()) {
+				taskRepo.delete(task);
+			}
 			jobRepo.deleteById(id);
 		}
 		catch (Exception e) {

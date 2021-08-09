@@ -3,9 +3,23 @@
 ### Full Stack Spring/REST project for Skill Distillery
 
 ## Overview
-This application is built with the intent of allowing users to track time spent on completing tasks related to a job and/or customer. This application is ideal for users who need to keep track of hours for billing purposes or budgeting purposes.
+This application is built with the intent of allowing users to track time spent on completing tasks related to a job and/or customer. This application is ideal for users who need to keep track of time for billing purposes or budgeting purposes.
 
-Currently, this application consists only of back-end code. The code has been built utilizing Spring Data JPA coupled with Spring REST. All REST endpoints have been tested with Postman to ensure appropriate response bodies and status'.
+## How to Run
+Upon arrival to the site, the user is given access to the options of viewing all jobs, searching jobs by customer or job number, or creating a new job. If the user chooses to search or view all jobs, each job result will be displayed with buttons allowing the user to edit the details of that job, delete the job, or view all of the tasks associated with that job. (Note: If delete is chosen, the job and all associated tasks and timers will be deleted permanently.)
+
+If the user chooses to view all of the tasks, any tasks that exist are displayed with buttons allowing the user to edit the details of the task, delete the task, or view all of the timers associated with that task. Additionally, the user has the option to create a new task. (Note: If delete is chosen, the task and all associated timers will be deleted permanently.)
+
+If the user chooses to view all of the timers, any timers that exist are displayed with buttons allowing the user to edit the timer or delete the timer. The user also has the option of creating a new timer. When a timer is created or updated, the task's total time will also be updated to reflect the total of all timers associated with that task. (Note: deleting a timer is permanent.)
+
+When creating a new timer, the user is provided buttons for starting, stoping, and saving the time. Start and stop work like a stopwatch. Start the timer when you begin working on a task and stop the timer when you are complete or taking a break. After stopping the timer, save the time to apply it to the task. 
+
+Notes about the data hierarchy:
+1) All timers must belong to a task.
+2) All tasks must belong to a job.
+3) A tasks total time is calculated based on the sum of its timers durations.
+4) Jobs are for organizational purposes to keep track of multiple tasks.
+
 
 ## REST Endpoints
 
@@ -13,7 +27,7 @@ Currently, this application consists only of back-end code. The code has been bu
 |----------|-----------|----------------------|--------------|---------------|
 | Read     | GET       | `/api/jobs`            |                                                                       | Collection of representations of all Jobs. Status: 200 - Ok |
 | Read     | GET       | `/api/jobs/{jobId#}`     |                                                                       | Representation of Job w/ jobId#. Status: 200 - Ok, 404 - Not Found |
-| Read     | GET       | `/api/jobs/search/customer/{keyword}`            |                                                                       | Collection of representations of all Jobs that contain the keyword within the cusotmer field. Status: 200 - Ok |
+| Read     | GET       | `/api/jobs/search/customer/{keyword}`            |                                                                       | Collection of representations of all Jobs that contain the keyword within the customer field. Status: 200 - Ok |
 | Read     | GET       | `/api/jobs/search/jobnumber/{keyword}`            |                                                                       | Collection of representations of all Jobs that contain the keyword within the jobNumber field. Status: 200 - Ok |
 | Create   | POST      | `/api/jobs`            | Representation of a new Job                                           | Representation of newly created Job. Status: 201 - Created, 400 - Bad Request|
 | Update   | PUT       | `/api/jobs/{jobId#}`     | Representation of a new version of Job w/ jobId#                      | Representation of updated Job w/ jobId#. Status: 200 - Ok, 404 - Not Found, 400 - Bad Request|
@@ -35,3 +49,10 @@ Currently, this application consists only of back-end code. The code has been bu
 ## Database Schema
 
 ![timedb Schema](DB/timedb.png)
+
+## Technologies Used
+* Java
+* Spring Data JPA
+* Spring REST
+* JavaScript
+* HTML

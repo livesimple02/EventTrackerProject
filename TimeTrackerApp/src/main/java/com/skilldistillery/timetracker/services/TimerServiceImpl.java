@@ -74,15 +74,14 @@ public class TimerServiceImpl implements TimerService {
 		}
 		return true;
 	}
-	
+
 	@Override
 	public List<Timer> listTimersByTaskId(int id) {
 		Optional<Task> taskResult = taskRepo.findById(id);
 		if (taskResult.isPresent()) {
 			Task taskToSearch = taskResult.get();
 			return timerRepo.findByTask(taskToSearch);
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
