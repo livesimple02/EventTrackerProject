@@ -2,17 +2,17 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, throwError } from 'rxjs';
 import { Job } from '../models/job';
-import {catchError} from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { JobListComponent } from '../components/job-list/job-list.component';
 import { JobFormComponent } from '../components/job-form/job-form.component';
 import { AppComponent } from '../app.component';
 import { Router } from '@angular/router';
+import { Timer } from '../models/timer';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class JobService {
-
   baseUrl = 'http://localhost:8084/';
   url = this.baseUrl + 'api/jobs/';
 
@@ -22,14 +22,17 @@ export class JobService {
   private showJobDetailRequestSource = new Subject<Job>();
   showJobDetailRequest$ = this.showJobDetailRequestSource.asObservable();
 
-  constructor( private http: HttpClient) { }
-
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private app: AppComponent
+  ) {}
 
   index(): Observable<Job[]> {
     return this.http.get<Job[]>(this.url, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
-        return throwError("Error getting all Jobs");
+        return throwError('Error getting all Jobs');
       })
     );
   }
@@ -38,7 +41,7 @@ export class JobService {
     return this.http.get<Job>(this.url + id, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
-        return throwError("Error retrieving Job by Id");
+        return throwError('Error retrieving Job by Id');
       })
     );
   }
@@ -53,12 +56,14 @@ export class JobService {
   }
 
   update(job: Job): Observable<Job> {
-    return this.http.put<Job>(this.url + job.id, job, this.getHttpOptions()).pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError('Error updating requested Job');
-      })
-    );
+    return this.http
+      .put<Job>(this.url + job.id, job, this.getHttpOptions())
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Error updating requested Job');
+        })
+      );
   }
 
   destroy(id: number) {
@@ -73,8 +78,8 @@ export class JobService {
   getHttpOptions() {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
+        'Content-Type': 'application/json',
+      }),
     };
     return httpOptions;
   }
@@ -85,5 +90,9 @@ export class JobService {
 
   showJobDetail(job: Job) {
     this.showJobDetailRequestSource.next(job);
+    this.app.result = '';
+    this.app.workingPaneView = 'jobDetail';
+    this.app.timerWindowView = '';
+    this.app.timerToEdit = new Timer();
   }
 }

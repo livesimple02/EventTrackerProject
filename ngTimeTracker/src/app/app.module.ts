@@ -33,7 +33,8 @@ import { TimerComponent } from './components/timer/timer.component';
   providers: [        // Things we want to inject into constructors
     JobService,       // All Services get added to providers
     TaskService,
-    TimerService
+    TimerService,
+    AppComponent
   ],
   bootstrap: [AppComponent]
 })

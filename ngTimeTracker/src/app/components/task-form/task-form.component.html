@@ -1,4 +1,7 @@
-<form id='taskForm'>
+<h2 *ngIf="this.app.result !== ''">{{this.app.result}}</h2>
+
+
+<form id='taskForm' *ngIf="this.app.result === ''">
 
   <h2 *ngIf="this.app.formAction === 'create'">Create New Task</h2>
   <h2 *ngIf="this.app.formAction === 'update'">Update Task Details</h2>

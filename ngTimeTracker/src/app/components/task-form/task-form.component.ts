@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
 import { Task } from 'src/app/models/task';
 import { JobService } from 'src/app/services/job.service';
@@ -13,7 +14,7 @@ export class TaskFormComponent implements OnInit {
 
   task: Task = new Task();
 
-  constructor(private taskSvc: TaskService, public app: AppComponent, private jobSvc: JobService) { }
+  constructor(private taskSvc: TaskService, public app: AppComponent, private jobSvc: JobService, private router: Router) { }
 
   ngOnInit(): void {
     this.task = this.app.taskToEdit;
@@ -32,13 +33,13 @@ export class TaskFormComponent implements OnInit {
     task.job = this.app.jobToEdit;
     this.taskSvc.create(task).subscribe(
       data => {
-        this.app.result = '';
-        this.app.workingPaneView = 'jobDetail';
+        this.app.result = 'Successfully Added Task';
+        this.app.workingPaneView = 'taskForm';
         this.jobSvc.showJobDetail(task.job);
         this.app.taskToEdit = new Task();
       },
       err => {
-        console.log("fail");
+        this.app.result = 'Unable to create requested task';
       }
     );
   }
@@ -46,13 +47,13 @@ export class TaskFormComponent implements OnInit {
   updateTask(task: Task) {
     this.taskSvc.update(task).subscribe(
       data => {
-        this.app.result = '';
-        this.app.workingPaneView = 'jobDetail';
+        this.app.result = 'Successfully Updated Task';
+        this.app.workingPaneView = 'taskForm';
         this.jobSvc.showJobDetail(task.job);
         this.app.taskToEdit = new Task();
       },
       err => {
-        console.log("fail");
+        this.app.result = 'Unable to update requested task';
       }
     );
   }

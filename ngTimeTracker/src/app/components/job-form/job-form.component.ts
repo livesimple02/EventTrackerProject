@@ -15,7 +15,7 @@ export class JobFormComponent implements OnInit {
 
   job: Job = new Job();
 
-  constructor(private jobSvc: JobService, public app: AppComponent, private router: Router) { }
+  constructor(private jobSvc: JobService, public app: AppComponent) { }
 
   ngOnInit(): void {
     this.job = this.app.jobToEdit;

@@ -1,10 +1,9 @@
-import { ChangeDetectorRef, Component, OnInit, ɵɵtrustConstantResourceUrl } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Job } from 'src/app/models/job';
 import { JobService } from 'src/app/services/job.service';
 import { AppComponent } from 'src/app/app.component';
-import { JobFormComponent } from '../job-form/job-form.component';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Timer } from 'src/app/models/timer';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-job-list',

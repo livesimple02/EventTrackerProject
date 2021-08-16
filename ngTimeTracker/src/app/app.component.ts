@@ -19,5 +19,6 @@ export class AppComponent {
   taskToEdit: Task = new Task();
   timerToEdit: Timer = new Timer();
   timerWindowView: string = '';
+  routedHome: boolean = true;
 
 }
