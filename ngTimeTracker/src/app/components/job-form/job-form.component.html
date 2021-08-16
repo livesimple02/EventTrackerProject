@@ -1,0 +1,28 @@
+<h2 *ngIf="this.app.result !== ''">{{this.app.result}}</h2>
+
+<form id='jobForm' *ngIf="this.app.result === ''">
+
+  <h2 *ngIf="this.app.formAction === 'create'">Create New Job</h2>
+  <h2 *ngIf="this.app.formAction === 'update'">Update Job Details</h2>
+
+
+  <div class="input-group mb-3" *ngIf="this.app.formAction === 'update'">
+    <span class="input-group-text">Job ID #: </span>
+    <input class="form-control" type="text" name="id" [(ngModel)]="job.id" readonly/>
+  </div>
+
+  <div class="input-group mb-3">
+    <span class="input-group-text">Customer: </span>
+    <input class="form-control" type="text" name="customer" [(ngModel)]="job.customer"/>
+  </div>
+
+  <div class="input-group mb-3">
+    <span class="input-group-text">Job Number: </span>
+    <input class="form-control" type="text" name="jobNumber" [(ngModel)]="job.jobNumber"/>
+  </div>
+
+  <div class='d-grid gap-2'>
+    <button class="btn btn-secondary" name="submit" (click)="jobMethodPicker(job)">Submit</button>
+  </div>
+
+</form>

@@ -18,6 +18,8 @@ public class JobServiceImpl implements JobService {
 	private JobRepository jobRepo;
 	@Autowired
 	private TaskRepository taskRepo;
+	@Autowired
+	private TaskService taskSvc;
 
 	@Override
 	public List<Job> allJobs() {
@@ -64,7 +66,7 @@ public class JobServiceImpl implements JobService {
 		try {
 			Job jobToDelete = retrieveJobById(id);
 			for (Task task : jobToDelete.getTasks()) {
-				taskRepo.delete(task);
+				taskSvc.deleteTaskById(task.getId());
 			}
 			jobRepo.deleteById(id);
 		}

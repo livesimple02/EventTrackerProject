@@ -1,0 +1,29 @@
+#main-body {
+  background-image: url("https://pixy.org/src/474/4746329.png");
+  background-repeat: repeat-y;
+  height: 100vh;
+  color: white;
+}
+
+#page-header {
+  text-align: center;
+  border-bottom: 4px ridge darkgrey;
+  margin-bottom: 0px;
+}
+#job-pane {
+  margin-top: 0px;
+  padding-top: 10px;
+  height: 90vh;
+  color: white;
+  border-right: ridge 4px darkgrey;
+}
+
+#working-window {
+  height: 70vh;
+  border-bottom: ridge 4px darkgrey;
+}
+
+h2 {
+  text-align: center;
+  text-decoration: underline;
+}

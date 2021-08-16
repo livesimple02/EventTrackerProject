@@ -12,7 +12,7 @@ If the user chooses to view all of the tasks, any tasks that exist are displayed
 
 If the user chooses to view all of the timers, any timers that exist are displayed with buttons allowing the user to edit the timer or delete the timer. The user also has the option of creating a new timer. When a timer is created or updated, the task's total time will also be updated to reflect the total of all timers associated with that task. (Note: deleting a timer is permanent.)
 
-When creating a new timer, the user is provided buttons for starting, stoping, and saving the time. Start and stop work like a stopwatch. Start the timer when you begin working on a task and stop the timer when you are complete or taking a break. After stopping the timer, save the time to apply it to the task. 
+When creating a new timer, the user is provided buttons for starting, stoping, and saving the time. Start and stop work like a stopwatch. Start the timer when you begin working on a task and stop the timer when you are complete or taking a break. After stopping the timer, save the time to apply it to the task.
 
 Notes about the data hierarchy:
 1) All timers must belong to a task.
@@ -54,5 +54,8 @@ Notes about the data hierarchy:
 * Java
 * Spring Data JPA
 * Spring REST
-* JavaScript
+* Angular
+* Typescript
 * HTML
+* Bootstrap
+* CSS

@@ -1,0 +1,25 @@
+.container{
+  max-height: 68vh;
+  overflow-y: scroll;
+  max-width: 100%;
+}
+
+#jobDetails {
+  padding-top: .5rem;
+}
+
+#deletedResult {
+  text-align: center;
+  padding-top: .5rem;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid white;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid white;
+  padding: 2px;;
+}

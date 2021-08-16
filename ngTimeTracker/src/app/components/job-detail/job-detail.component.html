@@ -1,0 +1,91 @@
+<div class="container">
+<h2 id="deletedResult" *ngIf="this.app.result !== ''">{{ this.app.result }}</h2>
+
+<div id="jobDetails" *ngIf="this.app.result === ''">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Job: {{ job.jobNumber }}</h2>
+      <h4>Customer: {{ job.customer }}</h4>
+    </div>
+    <div class="col-md-6">
+      <img
+        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAB60lEQVRoge2YMW7bMBSGv1d06GQ6a+7QqQU8OEHH5AZBjpE9QGUge47QC3RPgqKTNDRz7xGInlIg6OvgII1Yk6ZtiWQB/Zspkvo++ZEACWPGjCkmtple2MY8tI352TbmY8wYGRoqNraeVoh+ft0EemqOlj9C44oQWAP/8miTRHaBAPxLl5DEm4G4ouKB/+X8NiC3tp7M1s2RTcADb1H9hMrCaTeI3K1b2G+HQ/QnAH9ijpf3wL2tpzh9DPAFeP96UPJ/wFvzotfP8M/5fQM8drrAoTssqUBwwapcto05W/WbzBC5A951O8mVOyzZLhSx2wA8IXqFygWrkvkblYU5bit3QBIBb82LXqNyyaa16IGHBCUUXLDz5UKFc+DJO4Fo5YOHgQUidhumc/sV0X9qG1h9+fnS3VI7GayEYuAB2tp8EOEbcNAl02oTPAwkkAoeBhBICQ89C6SGhx4FcsBDTwK54KEHgZzwsKdAbnjYQ6AEeNhRoBR42EGgJHjYUqA0eNhCoER4iBQoFR4iBEqGhw0CpcNDQOB/gIeQQGPUbSoNHrY5Ujrwtp7MRPiOCx9xDOwz0Tdz7pdHuMG9+hCtzJFNBg87HOpLKJvOa30P1qyBwCx54KGPa5WM8LCvQGZ42EegAPgxY8aMyZ8/ZfDACMZdzSQAAAAASUVORK5CYII="
+        alt="edit-job"
+        (click)="showEditJob()"
+      />
+      <img
+        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAACJUlEQVRoge2YvW/TQBiHn7sjY9UFiSIYOjSiVGyt5HYAUkLyR0NVRwgJkBiRGGAEqaIsSQZKFfsYiFFUXXJ3vtdIiHtG34d/j+9svzZkMplMJhPIfFgcTEdFv6v5p4OTvfmwOIgZo0M7zsaH+wp7Zmr7av78+GF8vM1MR0XfmGqisOV8fPQodJwK6TQbH+7rypwDd5eHLqzSz7bO3n5sE/Ym01HRN7UtgXvLQ9+sqYdbL95/8I31CjjCN4hIOMI3BEl4t1DvuncF/HQ07Shbn6dspw3hAWrqW5VvjqAt9GNwvFuZugR2Hc2tVsITPnjOIAGQlZAKDxECICMhGR4iBSBNQjo8tBCAdhJdhIeWAhAn0VV4SBCAMIla2UVX4SFRADwSikssNXDHMVTkRZgsAN6VcCFWiogIQJSEaB0lJgC/JRamfq3c+x0L31H6iVR4iCinQ7ju2Z62mHXtoldriZhA86i0ip0N3W6nFoA3Ebkonue8C7H7IHkFNoa3XAIXjmHJpXhDkoD3Dav106oyj4EvjnYRidZbKKY8mA5O9oypSuC+r28srQTa1DZdSUQLpBRmXUhECUhUlUuJScocqwTfxFIl8fbkzedKq1Pgq6M5+sYOWoEu6vm/9lHf5ceIxNzeLaQWlV7TL/ltuv3y3acN20mjF2vrqj/5Qk40Oz16oLUu+Rd/LTasSCjJ8A0rEr3Q8NF0/nt9VPRjf69nMplM5v/mF/i6x8b172ZWAAAAAElFTkSuQmCC"
+        alt="delete-job"
+        (click)="deleteJob()"
+      />
+    </div>
+  </div>
+</div>
+<br />
+<div
+  id="taskListForJob"
+  *ngIf="this.app.result === '' && this.taskList.length > 0"
+>
+  <table>
+    <thead>
+      <tr>
+        <th colspan="6" style="text-align: center">Tasks</th>
+      </tr>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Total Time (minutes)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr id="taskListItem" *ngFor="let task of taskList">
+        <td>{{ task.title }}</td>
+        <td>{{ task.description }}</td>
+        <td>{{ task.totalTimeMin }}</td>
+        <td>
+          <img
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAA90lEQVRIie2VMU7DUAyGP7ed49yAC3CDKidgYak6wMCMECdAasLOCmwsjNwir/d57kqQGcgrDUJAkw4M8Wb51/fblp4fjAFYnd1Y0BiDLr/WZDg8LxFftekb4hc63zyn+uRA8EacF2CKy9PuJL0Ndjt34TorbNGazAQek242FA6AcxnXijunH7nfpdJ0ALxx4Qo4EjgWOAEmuFRa2G3S77WiDhzO87k9INx/TiKVFrHct+kt3IK6BW0sZGcAsdaFBX21oG7rbPUbY4SP8P8OB2jhno5VDLrcwuu83wP6zuCQnXf+gwTvKrzU+abqa/DzLRoIH+NP8Q4nWwwVP10k8wAAAABJRU5ErkJggg=="
+            alt="edit-task"
+            (click)="showEditTask(task)"
+          />
+        </td>
+        <td>
+          <img
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAABEUlEQVRIie2UzUrDQBSFvztKEOLrmLgtzaJYMUixD6mg1pULS7f+vI4BCXGuCzXIJM3cdlMXPds5Od9l7snAXv9SVZGX1Tg7t/uzaVXkZd+ZdMyj/Eyd3gIiIvP06WUxFP4+PpmA3AEHAvN0+Xr/99yFH6jzHlAgUdXrdZMF4UeA4p0PPR3A8fLtEfQS+Ggho9OLSHgt3l2lq+eH0Ne5IkuANXwQsC5I3WdtDY8COhClEcErJJZwE6CFCAtUEgBUGlGZxcKhZ8k2qdkZBbRX9D19g1AjHKrzN33t2gjQs+QZqiW/FTZAdlNTS8DWP9om01m8nR2Id+4HHO158KyA87ZWVkVeVkU2NZkZfq732r2+AHzztSsOAhLPAAAAAElFTkSuQmCC"
+            alt="delete-Task"
+            (click)="deleteTask(task)"
+          />
+        </td>
+        <td>
+          <button (click)="showTimers(task)">View Timers</button>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="6">
+          <div class="d-grid gap-2">
+            <button
+              class="btn btn-sm btn-secondary"
+              name="submit"
+              (click)="showTaskCreateForm()"
+            >
+              Add New Task
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div
+  class="d-grid gap-2"
+  *ngIf="this.app.result === '' && this.taskList.length === 0"
+>
+  <button
+    class="btn btn-sm btn-secondary"
+    name="submit"
+    (click)="showTaskCreateForm()"
+  >
+    Add New Task
+  </button>
+</div>
+</div>

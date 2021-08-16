@@ -1,0 +1,26 @@
+<form id='taskForm'>
+
+  <h2 *ngIf="this.app.formAction === 'create'">Create New Task</h2>
+  <h2 *ngIf="this.app.formAction === 'update'">Update Task Details</h2>
+
+
+  <div class="input-group mb-3" *ngIf="this.app.formAction === 'update'">
+    <span class="input-group-text">Task ID #: </span>
+    <input class="form-control" type="text" name="id" [(ngModel)]="task.id" readonly/>
+  </div>
+
+  <div class="input-group mb-3">
+    <span class="input-group-text">Title: </span>
+    <input class="form-control" type="text" name="title" [(ngModel)]="task.title"/>
+  </div>
+
+  <div class="input-group mb-3">
+    <span class="input-group-text">Description: </span>
+    <textarea class="form-control" name="description" [(ngModel)]="task.description"></textarea>
+  </div>
+
+  <div class='d-grid gap-2'>
+    <button class="btn btn-secondary" name="submit" (click)="taskMethodPicker(task)">Submit</button>
+  </div>
+
+</form>

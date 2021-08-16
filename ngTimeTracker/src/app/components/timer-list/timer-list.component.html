@@ -1,0 +1,75 @@
+<div class="container">
+<div id="jobDetails" *ngIf="this.app.result === ''">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Job: {{ job.jobNumber }}</h2>
+      <h4>Customer: {{ job.customer }}</h4>
+      <h4>Task: {{task.title}}</h4>
+    </div>
+  </div>
+</div>
+<br />
+<div
+  id="timerListForTask"
+  *ngIf="this.app.result === '' && this.timerList.length > 0"
+>
+  <table>
+    <thead>
+      <tr>
+        <th colspan="5" style="text-align: center">Timers</th>
+      </tr>
+      <tr>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Duration (minutes)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr id="taskListItem" *ngFor="let timer of timerList">
+        <td>{{ timer.start }}</td>
+        <td>{{ timer.end }}</td>
+        <td>{{ timer.duration }}</td>
+        <td>
+          <img
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAA90lEQVRIie2VMU7DUAyGP7ed49yAC3CDKidgYak6wMCMECdAasLOCmwsjNwir/d57kqQGcgrDUJAkw4M8Wb51/fblp4fjAFYnd1Y0BiDLr/WZDg8LxFftekb4hc63zyn+uRA8EacF2CKy9PuJL0Ndjt34TorbNGazAQek242FA6AcxnXijunH7nfpdJ0ALxx4Qo4EjgWOAEmuFRa2G3S77WiDhzO87k9INx/TiKVFrHct+kt3IK6BW0sZGcAsdaFBX21oG7rbPUbY4SP8P8OB2jhno5VDLrcwuu83wP6zuCQnXf+gwTvKrzU+abqa/DzLRoIH+NP8Q4nWwwVP10k8wAAAABJRU5ErkJggg=="
+            alt="edit-task"
+            (click)="showEditTimer(timer)"
+          />
+        </td>
+        <td>
+          <img
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAABEUlEQVRIie2UzUrDQBSFvztKEOLrmLgtzaJYMUixD6mg1pULS7f+vI4BCXGuCzXIJM3cdlMXPds5Od9l7snAXv9SVZGX1Tg7t/uzaVXkZd+ZdMyj/Eyd3gIiIvP06WUxFP4+PpmA3AEHAvN0+Xr/99yFH6jzHlAgUdXrdZMF4UeA4p0PPR3A8fLtEfQS+Ggho9OLSHgt3l2lq+eH0Ne5IkuANXwQsC5I3WdtDY8COhClEcErJJZwE6CFCAtUEgBUGlGZxcKhZ8k2qdkZBbRX9D19g1AjHKrzN33t2gjQs+QZqiW/FTZAdlNTS8DWP9om01m8nR2Id+4HHO158KyA87ZWVkVeVkU2NZkZfq732r2+AHzztSsOAhLPAAAAAElFTkSuQmCC"
+            alt="delete-Task"
+            (click)="deleteTimer(timer)"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="5">
+          <div class="d-grid gap-2">
+            <button
+              class="btn btn-sm btn-secondary"
+              name="submit"
+              (click)="showNewTimer()"
+            >
+              Add New Timer
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div
+  class="d-grid gap-2"
+  *ngIf="this.app.result === '' && this.timerList.length === 0"
+>
+  <button
+    class="btn btn-sm btn-secondary"
+    name="submit"
+    (click)="showNewTimer()"
+  >
+    Add New Timer
+  </button>
+</div>
+</div>

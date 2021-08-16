@@ -1,0 +1,19 @@
+.container{
+  max-height: 68vh;
+  overflow-y: auto;
+  max-width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid white;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid white;
+}
+
+#jobDetails {
+  padding-top: .5rem;
+}

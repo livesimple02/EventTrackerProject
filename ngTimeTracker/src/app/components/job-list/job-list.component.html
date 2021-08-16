@@ -1,3 +1,15 @@
 <ul>
-  <li *ngFor="let job of jobs">{{job | json}}</li>
+  <li id="customerListItem" *ngFor="let customer of jobsByCustomer | keyvalue"
+                  (click)="expandCustomer(customer.key)"
+                  [ngClass]="expandedCustomers.includes(customer.key) ? 'expanded' : 'collapsed'">
+                  {{ customer.key }}<br>
+    <ul>
+      <li id="jobListItem" *ngFor="let job of jobsByCustomer.get(customer.key)">
+        <span *ngIf="expandedCustomers.includes(customer.key)" (click)="showJobDetail(job.id)">{{ job.jobNumber }}</span>
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li id="jobInteractions" (click)="showJobCreateForm()"> Create New Job </li>
 </ul>

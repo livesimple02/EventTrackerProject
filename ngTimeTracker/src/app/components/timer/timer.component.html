@@ -1,0 +1,54 @@
+<div class="row" *ngIf="this.app.timerToEdit.id == 0">
+  <div class="col-md-3">
+    <button (click)="startTimer()" [attr.disabled]="startTimeString != '' ? '' : null">Start Timer</button><br />
+    {{ startTimeString }}
+  </div>
+
+  <div class="col-md-3">
+    <button (click)="stopTimer()" [attr.disabled]="endTimeString != '' || startTimeString == '' ? '' : null">Stop Timer</button><br />
+    {{ endTimeString }}
+  </div>
+
+  <div class="col-md-3">
+    <button [attr.disabled]="endTimeString == '' ? '' : null" (click)="saveTime()">Save Timer</button><br>
+    {{duration}} minutes
+  </div>
+
+  <div class="col-md-3">
+    <button (click)="resetTimer()">Reset Timer</button>
+  </div>
+
+</div>
+
+<div *ngIf="this.app.timerToEdit.id !== 0">
+  <form id='timerForm'>
+
+    <h2 *ngIf="this.app.formAction === 'update'">Edit Timer</h2>
+
+
+    <div class="input-group mb-3" *ngIf="this.app.formAction === 'update'">
+      <span class="input-group-text">Timer ID #: </span>
+      <input class="form-control" type="text" name="id" [(ngModel)]="timer.id" readonly/>
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text">Start: </span>
+      <input class="form-control" type="text" name="start" [(ngModel)]="timer.start"/>
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text">End: </span>
+      <input class="form-control" type='text' name="end" [(ngModel)]="timer.end">
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text">Duration (minutes): </span>
+      <input class="form-control" type='text' name="duration" [(ngModel)]="timer.duration">
+    </div>
+
+    <div class='d-grid gap-2'>
+      <button class="btn btn-secondary" name="submit" (click)="updateTimer(timer)">Submit</button>
+    </div>
+
+  </form>
+</div>

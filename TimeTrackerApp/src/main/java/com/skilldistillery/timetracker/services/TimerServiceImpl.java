@@ -18,6 +18,8 @@ public class TimerServiceImpl implements TimerService {
 	private TimerRepository timerRepo;
 	@Autowired
 	private TaskRepository taskRepo;
+	@Autowired
+	private TaskService taskSvc;
 
 	@Override
 	public List<Timer> allTimers() {
@@ -54,6 +56,8 @@ public class TimerServiceImpl implements TimerService {
 			if (timer.getTask() != null) {
 				timerToUpdate.setTask(timer.getTask());
 			}
+			Task taskToRefresh = timerToUpdate.getTask();
+			taskSvc.updateTaskById(taskToRefresh, taskToRefresh.getId());
 			return timerRepo.save(timerToUpdate);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -64,7 +68,10 @@ public class TimerServiceImpl implements TimerService {
 	@Override
 	public Boolean deleteTimerById(int id) {
 		try {
+			Timer timerToUpdate = timerRepo.getById(id);
+			Task taskToRefresh = timerToUpdate.getTask();
 			timerRepo.deleteById(id);
+			taskSvc.updateTaskById(taskToRefresh, taskToRefresh.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
