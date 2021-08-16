@@ -8,12 +8,13 @@ import { JobFormComponent } from '../components/job-form/job-form.component';
 import { AppComponent } from '../app.component';
 import { Router } from '@angular/router';
 import { Timer } from '../models/timer';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class JobService {
-  baseUrl = 'http://localhost:8084/';
+  baseUrl = environment.baseUrl;;
   url = this.baseUrl + 'api/jobs/';
 
   private updateJobListRequestSource = new Subject<boolean>();

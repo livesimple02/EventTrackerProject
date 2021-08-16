@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Time Tracker</title>
+<script type="text/javascript" src="js/script.js"></script>
+</head>
+<body>
+	<h1>Time Tracker</h1>
+	<h4 id="result"></h4>
+	<br>
+
+	<form name="findJobsForm">
+		Search Jobs By: <input type="radio" id="customerKeyword"
+			name="searchCategory" value="customer" checked="checked"> <label
+			for="customerKeyword">Customer</label> <input type="radio"
+			id="jobNumberKeyword" name="searchCategory" value="jobNumber">
+		<label for="jobNumberKeyword">Job Number</label><br> <input
+			type="text" name="keyword" />
+		<button id="searchJobsBtn" name="searchJobsBtn">Search</button>
+		<button id="viewJobs" name="viewJobs">View All Jobs</button>
+		<button id="createJob" name="createJob">Create New Job</button>
+	</form>
+
+
+	<h3 id="createJobHeader" hidden>Create Job</h3>
+	<form id="createJobForm" name="createJobForm" hidden>
+		<input type="text" name="jobId" hidden /> Job Number: <input
+			type="text" name="jobNumber" /> Customer: <input type="text"
+			name="customer" />
+		<button name="submitCreateJob">Create Job</button>
+		<br>
+		<br>
+	</form>
+
+
+
+	<form name="jobsDetail" id="jobsDetail"></form>
+
+
+
+	<h3 id="createTaskHeader" hidden>Create Task</h3>
+	<form id="createTaskForm" name="createTaskForm" hidden>
+		<input type="number" name="taskId" hidden /> Title: <input type="text"
+			name="title" /> Description:
+		<textarea name="description"></textarea>
+		<input type="number" name="jobId" hidden /> Total Time: <input
+			type="number" name="totalTimeMin" readonly disabled/>
+		<button name="submitCreateTask" id="submitCreateTask">Create Task</button>
+	</form>
+
+	<form name="tasksDetail" id="tasksDetail"></form>
+
+
+	<form name="timersDetail" id="timersDetail"></form>
+
+	<h3 id="createTimerHeader" hidden>Create Timer</h3>
+	<form name="createTimerForm" id="createTimerForm" hidden>
+		<input type="number" name="taskId" hidden/>
+		<button id="startTimer" name="startTimer">Start Timer</button>
+		<button id="stopTimer" name="stopTimer" disabled>Stop Timer</button>
+		<button id="submitTime" name="submitTime" disabled>Submit
+			Time</button>
+	</form>
+	
+	<h3 id="editTimerHeader" hidden>Edit Timer</h3>
+	<form name="editTimerForm" id="editTimerForm" hidden>
+		<input type="number" name="timerId" hidden/>
+		Start: <input type="text" name="start"/>
+		End: <input type="text" name="end"/>
+		Duration (minutes) <input type="number" name="duration"/>
+		<button id="saveTimer" name="saveTimer">Save Timer</button>
+	</form>
+
+</body>
+</html>
